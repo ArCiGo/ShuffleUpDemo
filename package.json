@@ -1,0 +1,17 @@
+{
+  "name": "shuffleup_assessment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^15.5.0",
+    "cypress-ajv-schema-validator": "^2.0.2",
+    "typescript": "^5.9.3"
+  }
+}
