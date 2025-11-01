@@ -1,17 +1,28 @@
 {
-  "name": "shuffleup_assessment",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "cypress:run": "cypress run",
-    "cypress:open": "cypress open"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "cypress": "^15.5.0",
-    "cypress-ajv-schema-validator": "^2.0.2",
-    "typescript": "^5.9.3"
-  }
+    "name": "shuffleup_assessment",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "cypress:open": "cypress open",
+        "clean:reports": "rm -rf cypress/results cypress/reports",
+        "merge:junit": "jrm cypress/results/combined-junit.xml 'cypress/results/junit/*.xml' || true",
+        "merge:mochawesome": "mochawesome-merge cypress/results/mochawesome/*.json > cypress/results/mochawesome-bundle.json || true",
+        "generate:html": "marge cypress/results/mochawesome-bundle.json -f report -o cypress/reports/html --charts --inline || true",
+        "generate:reports": "npm run merge:junit && npm run merge:mochawesome && npm run generate:html",
+        "test:report": "npm run clean:reports && bash scripts/run-tests.sh"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "cypress": "^15.5.0",
+        "cypress-ajv-schema-validator": "^2.0.2",
+        "cypress-multi-reporters": "^2.0.5",
+        "junit-report-merger": "^8.0.0",
+        "mocha-junit-reporter": "^2.2.1",
+        "mochawesome": "^7.1.4",
+        "mochawesome-merge": "^5.0.0",
+        "mochawesome-report-generator": "^6.3.0",
+        "typescript": "^5.9.3"
+    }
 }

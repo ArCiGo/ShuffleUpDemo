@@ -1,6 +1,4 @@
 export class CheckoutStepPageOne {
-    // Variables, constants and objects
-
     // Constructor
     constructor() { } 
 

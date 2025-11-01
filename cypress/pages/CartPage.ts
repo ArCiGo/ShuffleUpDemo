@@ -7,11 +7,6 @@ export class CartPage {
     // Actions
     // Move the logic for validating the items to the tests
     validateProductsInCart() {
-        // products.forEach(item => {
-        //     cy.get('[data-test="inventory-item-name"]').then((item) => {
-        //         return (Cypress.$.makeArray(item)).map((el) => el.innerText)
-        //     }).should('deep.equal', item)
-        // });
         return cy.get('[data-test="inventory-item-name"]').then((products) => {
             return (Cypress.$.makeArray(products)).map((el) => el.innerText)
         });

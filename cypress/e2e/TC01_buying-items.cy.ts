@@ -7,7 +7,7 @@ import { CheckoutCompletePage } from "../pages/CheckoutCompletePage";
 
 describe('TC01. Buying items in the Swag Labs store', () => {
     // Variables, constants and objects
-    let products: string[];
+    let products: string[], checkoutData: any;
     const loginPage = new LoginPage();
     const inventoryPage = new InventoryPage();
     const cartPage = new CartPage();
@@ -17,9 +17,10 @@ describe('TC01. Buying items in the Swag Labs store', () => {
 
     before(() => {
         // Getting the data from the fixture file
-        cy.fixture('products').then(data => {
-            products = data;
-        });
+        cy.fixture('products').then(data => { products = data; });
+        // Getting the data for checking out the cart
+        cy.fixture('checkout').then(data => { checkoutData = data; })
+        
         cy.navigateTo(Cypress.env('base_url_ui'));
 
         loginPage.loginFormIsLoaded();
@@ -36,9 +37,7 @@ describe('TC01. Buying items in the Swag Labs store', () => {
         });
         cartPage.clickOnCheckoutButton();
 
-        cy.fixture('checkout').then(data => {
-            checkoutStepPageOne.fillCheckoutForm(data.firstName, data.lastName, data.zipCode);
-        });
+        checkoutStepPageOne.fillCheckoutForm(checkoutData.firstName, checkoutData.lastName, checkoutData.zipCode);
         checkoutStepPageOne.clickOnContinueButton();
 
         checkoutStepPageTwo.checkoutSummary().then(summary => {

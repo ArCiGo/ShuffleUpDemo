@@ -14,8 +14,7 @@ export class InventoryPage {
     addProductsToCart(products: string[]) {
         products.forEach(item => {
             cy.contains('[data-test="inventory-item"]', item)
-                // .find('button[class*="btn btn_primary"]')
-                .find('[data-test*="add-to-cart-"]')        // Update this locator because it seems brittle
+                .find('[data-test*="add-to-cart-"]')
                 .click();
         });
     }
